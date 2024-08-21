@@ -15,9 +15,9 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Убедимся, что SDK загружен и Telegram WebApp доступен
     if (window.Telegram && window.Telegram.WebApp) {
       const initData = window.Telegram.WebApp.initDataUnsafe;
-
       console.log('WebAppInitData:', initData);
     } else {
       console.error('Telegram WebApp is not available.');
