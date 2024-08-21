@@ -13,12 +13,13 @@ function App() {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [initData, setInitData] = useState<string | null>(null);
 
   useEffect(() => {
-    // Убедимся, что SDK загружен и Telegram WebApp доступен
     if (window.Telegram && window.Telegram.WebApp) {
-      const initData = window.Telegram.WebApp.initDataUnsafe;
-      console.log('WebAppInitData:', initData);
+      const webAppInitData = window.Telegram.WebApp.initData;
+      console.log('WebAppInitData (raw):', webAppInitData);
+      setInitData(webAppInitData);
     } else {
       console.error('Telegram WebApp is not available.');
     }
@@ -58,6 +59,12 @@ function App() {
       <img src={data.image} alt={data.name} style={{ width: '200px', height: '200px' }} />
       <p>Age: {data.age}</p>
       <p>{data.description}</p>
+      {initData && (
+        <div>
+          <h2>WebAppInitData (raw)</h2>
+          <p>{initData}</p>
+        </div>
+      )}
     </div>
   );
 }
