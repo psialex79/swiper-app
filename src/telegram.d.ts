@@ -5,9 +5,9 @@ interface WebAppUser {
     username?: string;
     language_code?: string;
     is_bot: boolean;
-  }
-  
-  interface WebAppChat {
+}
+
+interface WebAppChat {
     id: number;
     type: string;
     title?: string;
@@ -15,9 +15,9 @@ interface WebAppUser {
     first_name?: string;
     last_name?: string;
     photo_url?: string;
-  }
-  
-  interface WebAppInitData {
+}
+
+interface WebAppInitData {
     query_id?: string;
     user?: WebAppUser;
     receiver?: WebAppUser;
@@ -28,15 +28,15 @@ interface WebAppUser {
     can_send_after?: number;
     auth_date?: number;
     hash: string;
-  }
-  
-  interface TelegramWebApp {
+}
+
+interface TelegramWebApp {
     initDataUnsafe: WebAppInitData;
-  }
-  
-  interface Window {
+    initData: string;
+}
+
+interface Window {
     Telegram: {
-      WebApp: TelegramWebApp;
+        WebApp: TelegramWebApp;
     };
-  }
-  
+}
