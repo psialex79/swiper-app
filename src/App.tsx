@@ -15,9 +15,13 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const initData = window.Telegram.WebApp.initDataUnsafe;
+    if (window.Telegram && window.Telegram.WebApp) {
+      const initData = window.Telegram.WebApp.initDataUnsafe;
 
-    console.log('WebAppInitData:', initData);
+      console.log('WebAppInitData:', initData);
+    } else {
+      console.error('Telegram WebApp is not available.');
+    }
 
     fetch('https://swiperapp.ru/next')
       .then(response => {
